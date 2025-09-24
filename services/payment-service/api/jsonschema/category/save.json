@@ -1,0 +1,29 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"title": "JSON Schema for save",
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "integer"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"code": {
+			"type": "string",
+			"minLength": 1
+		},
+		"sequence": {
+			"type": "integer",
+			"minimum": 0,
+			"default": 0
+		},
+		"isActive": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"required": [ "name", "code" ],
+	"additionalProperties": false
+}

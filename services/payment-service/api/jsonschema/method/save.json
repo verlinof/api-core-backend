@@ -1,0 +1,41 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"title": "JSON Schema for save",
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "integer"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"description": {
+			"type": "string"
+		},
+		"iconUrl": {
+			"type": "string",
+			"format": "uri"
+		},
+		"categoryId": {
+			"type": "integer"
+		},
+		"bankId": {
+			"type": "integer"
+		},
+		"providerId": {
+			"type": "integer"
+		},
+		"paymentFee": {
+			"type": "number",
+			"minimum": 0,
+			"default": 0
+		},
+		"isActive": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"required": [ "name", "description", "iconUrl", "categoryId", "bankId", "providerId", "paymentFee", "isActive" ],
+	"additionalProperties": false
+}

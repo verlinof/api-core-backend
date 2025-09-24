@@ -1,0 +1,58 @@
+{
+     "GoVersion": "1.24",
+     "Version": "v1.18.8",
+     "ServiceName": "payment-service",
+     "PackagePrefix": "payment-service",
+     "ProtoSource": "payment-service/api/proto",
+     "Owner": "Achmad Afiffudin Nurzein",
+     "License": "MIT License",
+     "Year": 2025,
+     "IsMonorepo": false,
+     "RestHandler": true,
+     "GRPCHandler": false,
+     "GraphQLHandler": false,
+     "FiberRestHandler": true,
+     "KafkaHandler": false,
+     "SchedulerHandler": false,
+     "RedisSubsHandler": false,
+     "TaskQueueHandler": false,
+     "PostgresListenerHandler": false,
+     "RabbitMQHandler": false,
+     "IsWorkerActive": false,
+     "RedisDeps": true,
+     "SQLDeps": true,
+     "MongoDeps": false,
+     "SQLUseGORM": true,
+     "ArangoDeps": false,
+     "SQLDriver": "postgres",
+     "WorkerPlugins": null,
+     "Modules": [
+          {
+               "ModuleName": "bank"
+          },
+          {
+               "ModuleName": "category"
+          },
+          {
+               "ModuleName": "log"
+          },
+          {
+               "ModuleName": "master"
+          },
+          {
+               "ModuleName": "method"
+          },
+          {
+               "ModuleName": "order"
+          },
+          {
+               "ModuleName": "payment"
+          },
+          {
+               "ModuleName": "provider"
+          },
+          {
+               "ModuleName": "vendor"
+          }
+     ]
+}
