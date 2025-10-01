@@ -3,7 +3,7 @@ name: CI Docker
 on:
   push:
     branches:
-      - main
+      - dev
 
 env:
   SERVICES: "payment-service"
