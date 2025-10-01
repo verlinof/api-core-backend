@@ -23,6 +23,9 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         PORT=${{ secrets.SSH_PORT }}
         HOST=${{ secrets.SSH_HOST }}
+        echo "Open \$PORT..."
+        echo "Open \$HOST..."        
+        
         ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
 
     - name: Build Docker Images and Save as TAR
