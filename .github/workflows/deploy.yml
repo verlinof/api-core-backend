@@ -23,8 +23,8 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         PORT=${{ secrets.SSH_PORT }}
         HOST=${{ secrets.SSH_HOST }}
-        echo "Open \$PORT..."
-        echo "Open \$HOST..."        
+        echo "Open ${{ secrets }}..."
+        echo "Open ${{ secrets.GITHUB_TOKEN }}..."        
         
         ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
 
