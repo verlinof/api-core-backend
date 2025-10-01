@@ -33,6 +33,17 @@ jobs:
       run: |
         mkdir -p images
         for SERVICE in $SERVICES; do
+          touch ./services/$SERVICE/.env
+          echo "DEBUG_MODE=${{ vars.DEBUG_MODE }}" >> ./services/$SERVICE/.env
+          echo "ENVIRONMENT=${{ vars.ENVIRONMENT }}" >> ./services/$SERVICE/.env          
+          echo "LOAD_CONFIG_TIMEOUT=${{ vars.LOAD_CONFIG_TIMEOUT }}" >> ./services/$SERVICE/.env
+          echo "BASIC_AUTH_PASS=${{ secrets.BASIC_AUTH_PASS }}" >> ./services/$SERVICE/.env
+          echo "BASIC_AUTH_USERNAME=${{ secrets.BASIC_AUTH_USERNAME }}" >> ./services/$SERVICE/.env
+          echo "REDIS_READ_DSN=${{ secrets.REDIS_READ_DSN }}" >> ./services/$SERVICE/.env
+          echo "REDIS_WRITE_DSN=${{ secrets.REDIS_WRITE_DSN }}" >> ./services/$SERVICE/.env         
+          echo "SQL_DB_READ_DSN=${{ secrets.SQL_DB_READ_DSN }}" >> ./services/$SERVICE/.env          
+          echo "SQL_WRITE_READ_DSN=${{ secrets.SQL_WRITE_READ_DSN }}" >> ./services/$SERVICE/.env          
+
           IMAGE_NAME=$SERVICE:latest
           echo "🛠️ Building $IMAGE_NAME"
             docker build -t $IMAGE_NAME ./services/$SERVICE
