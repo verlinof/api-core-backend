@@ -42,7 +42,7 @@ jobs:
     - name: Copy Images to VPS
       run: |
         for SERVICE in $SERVICES; do
-          scp -P ${{ secrets.SSH_PORT }} ./images/$SERVICE.tar ${{ secrets.VPS_USER }}@${{ secrets.SSH_HOST }}:/tmp/
+          scp -P ${{ secrets.SSH_PORT }} ./images/$SERVICE.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/
         done
 
     - name: Deploy Images on VPS
