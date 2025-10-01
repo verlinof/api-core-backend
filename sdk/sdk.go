@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	// @candi:serviceImport
+	"monorepo/sdk/order-service"
 )
 
 // Option func type
@@ -34,14 +35,26 @@ func GetSDK() SDK {
 
 // @candi:construct
 
+// SetOrderservice option func
+func SetOrderservice(orderservice orderservice.Orderservice) Option {
+	return func(s *sdkInstance) {
+		s.orderservice = orderservice
+	}
+}
+
 // SDK instance abstraction
 type SDK interface {
 	// @candi:serviceMethod
+	Orderservice() orderservice.Orderservice
 }
 
 // sdkInstance implementation
 type sdkInstance struct {
 	// @candi:serviceField
+	orderservice	orderservice.Orderservice
 }
 
 // @candi:instanceMethod
+func (s *sdkInstance) Orderservice() orderservice.Orderservice {
+	return s.orderservice
+}
