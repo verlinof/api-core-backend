@@ -21,7 +21,9 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        PORT=${{ secrets.SSH_PORT }}
+        HOST=${{ secrets.SSH_HOST }}
+        ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
 
     - name: Build Docker Images and Save as TAR
       run: |
