@@ -62,6 +62,6 @@ jobs:
             docker load -i /tmp/\$SERVICE.tar
             docker stop \$SERVICE || true
             docker rm \$SERVICE || true
-            docker run -d --name \$SERVICE -p 8080:80 \$SERVICE:latest  # Ganti port sesuai kebutuhan
+            docker run -d --name \$SERVICE -p ${{ vars.HTTP_PORT }}:80 \$SERVICE:latest  # Ganti port sesuai kebutuhan
           done
         EOF
