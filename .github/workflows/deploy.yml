@@ -33,6 +33,7 @@ jobs:
           touch ./services/$SERVICE/.env
           echo "DEBUG_MODE=${{ vars.DEBUG_MODE }}" >> ./services/$SERVICE/.env
           echo "ENVIRONMENT=${{ vars.ENVIRONMENT }}" >> ./services/$SERVICE/.env          
+          echo "USE_REST=${{ vars.USE_REST }}" >> ./services/$SERVICE/.env          
           echo "LOAD_CONFIG_TIMEOUT=${{ vars.LOAD_CONFIG_TIMEOUT }}" >> ./services/$SERVICE/.env
           echo "BASIC_AUTH_PASS=${{ secrets.BASIC_AUTH_PASS }}" >> ./services/$SERVICE/.env
           echo "BASIC_AUTH_USERNAME=${{ secrets.BASIC_AUTH_USERNAME }}" >> ./services/$SERVICE/.env
