@@ -3,3 +3,4 @@ vendor
 main_service.go
 payment-service
 coverage.txt
+/tmp/*
