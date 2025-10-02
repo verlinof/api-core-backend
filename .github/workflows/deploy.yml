@@ -40,7 +40,8 @@ jobs:
           echo "REDIS_READ_DSN=${{ secrets.REDIS_READ_DSN }}" >> ./services/$SERVICE/.env
           echo "REDIS_WRITE_DSN=${{ secrets.REDIS_WRITE_DSN }}" >> ./services/$SERVICE/.env         
           echo "SQL_DB_READ_DSN=${{ secrets.SQL_DB_READ_DSN }}" >> ./services/$SERVICE/.env          
-          echo "SQL_DB_WRITE_DSN=${{ secrets.SQL_DB_WRITE_DSN }}" >> ./services/$SERVICE/.env          
+          echo "SQL_DB_WRITE_DSN=${{ secrets.SQL_DB_WRITE_DSN }}" >> ./services/$SERVICE/.env
+          echo "HTTP_PORT=${{ vars.HTTP_PORT }}" >> ./services/$SERVICE/.env
 
           IMAGE_NAME=$SERVICE:latest
           echo "🛠️ Building $IMAGE_NAME"
