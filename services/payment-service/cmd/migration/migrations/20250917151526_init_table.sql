@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS "payment_provider" (
 	"updated_at" TIMESTAMPTZ NULL DEFAULT NULL
 );
 
-CREATE INDEX IF NOT EXISTS "idx_payment_vendor_name" ON payment_vendor USING btree ("name");
+CREATE INDEX IF NOT EXISTS "idx_payment_provider_name" ON payment_provider USING btree ("name");
 
 CREATE TABLE IF NOT EXISTS "payment_method" (
 	"id" SERIAL NOT NULL PRIMARY KEY,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "payment_method" (
 	"icon" VARCHAR(255),
 	"category_id" INT,
 	"bank_id" INT,
-	"vendor_id" INT,
+	"provider_id" INT,
 	"is_active" BOOLEAN,
 	"created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	"updated_at" TIMESTAMPTZ NULL DEFAULT NULL,
@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS "payment_method" (
 		FOREIGN KEY("bank_id")
 			REFERENCES payment_bank(id)
 			ON DELETE CASCADE,
-	CONSTRAINT "fk_payment_vendor_payment_method"
-		FOREIGN KEY("vendor_id")
-			REFERENCES payment_vendor(id)
+	CONSTRAINT "fk_payment_provider_payment_method"
+		FOREIGN KEY("provider_id")
+			REFERENCES payment_provider(id)
 			ON DELETE CASCADE
 );
 
@@ -88,16 +88,16 @@ CREATE INDEX IF NOT EXISTS "idx_payment_order_order_id" ON payment_order USING b
 CREATE TABLE IF NOT EXISTS "payment_log" (
 	"id" SERIAL NOT NULL PRIMARY KEY,
 	"order_id" INT,
-	"vendor_id" INT,
+	"provider_id" INT,
 	"payment_url" TEXT,
 	"status_code" INT,
 	"request_data" JSONB,
 	"response_data" JSONB,
 	"created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	"updated_at" TIMESTAMPTZ NULL DEFAULT NULL,
-	CONSTRAINT "fk_payment_vendor_payment_log"
-		FOREIGN KEY("vendor_id")
-			REFERENCES payment_vendor(id)
+	CONSTRAINT "fk_payment_provider_payment_log"
+		FOREIGN KEY("provider_id")
+			REFERENCES payment_provider(id)
 			ON DELETE CASCADE
 );
 -- +goose StatementEnd
