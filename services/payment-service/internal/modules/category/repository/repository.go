@@ -13,6 +13,7 @@ import (
 
 // CategoryRepository abstract interface
 type CategoryRepository interface {
+	FetchPaymentList(ctx context.Context, filter *domain.FilterCategory) (data []shareddomain.PaymentCategory, err error)
 	FetchAll(ctx context.Context, filter *domain.FilterCategory) ([]shareddomain.PaymentCategory, error)
 	Count(ctx context.Context, filter *domain.FilterCategory) int
 	Find(ctx context.Context, filter *domain.FilterCategory) (shareddomain.PaymentCategory, error)
