@@ -19,7 +19,7 @@ type ResponseMethod struct {
 	Code        string `json:"code"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	IconURL     string `json:"iconURL"`
+	Icon        string `json:"icon"`
 	CategoryID  int    `json:"categoryID"`
 	BankID      int    `json:"bankID"`
 	ProviderID  int    `json:"providerID"`
@@ -34,7 +34,7 @@ func (r *ResponseMethod) Serialize(source *shareddomain.PaymentMethod) {
 	r.Code = source.Code
 	r.Name = source.Name
 	r.Description = source.Description
-	r.IconURL = source.IconURL
+	r.Icon = source.Icon
 	r.CategoryID = source.CategoryID
 	r.BankID = source.BankID
 	r.ProviderID = source.ProviderID

@@ -9,7 +9,7 @@ type PaymentMethod struct {
 	Code        string           `gorm:"column:code;type:varchar(100)" json:"code"`
 	Name        string           `gorm:"column:name;type:varchar(255)" json:"name"`
 	Description string           `gorm:"column:description;type:text" json:"description"`
-	IconURL     string           `gorm:"column:icon_url;type:text" json:"icon_url"`
+	Icon        string           `gorm:"column:icon;type:text" json:"icon"`
 	CategoryID  int              `gorm:"column:category_id" json:"category_id"`
 	BankID      int              `gorm:"column:bank_id" json:"bank_id"`
 	ProviderID  int              `gorm:"column:provider_id" json:"provider_id"`
