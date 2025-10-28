@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "612301db-7e03-40e4-a28c-7b71a0c9b27d",
+		"_postman_id": "4746a88f-d9a1-4847-9035-0e0a04f97463",
 		"name": "Paymen Service - Borneo Link",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "42218416"
+		"_exporter_id": "29516691"
 	},
 	"item": [
 		{
@@ -334,7 +334,10 @@
 							"name": "Get Payment Provider By ID",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -366,7 +369,7 @@
 									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
 								},
 								"url": {
-									"raw": "{{url}}/v1/provider?search=midtrans",
+									"raw": "{{url}}/v1/provider",
 									"host": [
 										"{{url}}"
 									],
@@ -377,7 +380,8 @@
 									"query": [
 										{
 											"key": "search",
-											"value": "midtrans"
+											"value": "midtrans",
+											"disabled": true
 										}
 									]
 								}
@@ -596,16 +600,27 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
-									"raw": "{{url}}/v1/category",
+									"raw": "{{url}}/v1/category?preload=method",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"v1",
 										"category"
+									],
+									"query": [
+										{
+											"key": "preload",
+											"value": "method"
+										}
 									]
 								}
 							},
@@ -675,7 +690,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\",\n    \n}",
+									"raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -693,15 +708,131 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Add Payment Method",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/v1/method",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"method"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 28 Oct 2025 04:12:13 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "362"
+										},
+										{
+											"key": "Www-Authenticate",
+											"value": "Basic realm=\"\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 201,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": 5,\n        \"code\": \"BCA_VA\",\n        \"name\": \"BCA Virtual Account\",\n        \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n        \"icon\": \"https://example.com/icons/bca_va.png\",\n        \"categoryID\": 2,\n        \"bankID\": 1,\n        \"providerID\": 1,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n        \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n    }\n}"
+								}
+							]
 						},
 						{
-							"name": "New Request",
+							"name": "Get Payment Method",
 							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/method",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"method"
+									]
+								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Payment Method",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/v1/method",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"method"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 28 Oct 2025 04:12:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1054"
+										},
+										{
+											"key": "Www-Authenticate",
+											"value": "Basic realm=\"\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all method\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 5,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 2,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n            \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n        },\n        {\n            \"id\": 3,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:11:28+07:00\",\n            \"updatedAt\": \"2025-10-28T11:11:28+07:00\"\n        },\n        {\n            \"id\": 2,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:08:44+07:00\",\n            \"updatedAt\": \"2025-10-28T11:08:44+07:00\"\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				}
@@ -714,7 +845,7 @@
 					"name": "Pre Checkout",
 					"item": [
 						{
-							"name": "Payment List",
+							"name": "Get Payment List",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -738,20 +869,75 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
-									"raw": "{{url}}/v1/paymentlist",
+									"raw": "{{url}}/v1/payment-list",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"v1",
-										"paymentlist"
+										"payment-list"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "Get Payment List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/v1/payment-list",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"payment-list"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 28 Oct 2025 06:02:12 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1506"
+										},
+										{
+											"key": "Www-Authenticate",
+											"value": "Basic realm=\"\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all category, page 1 with 2 data\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Internal Provider\",\n            \"code\": \"INTERNAL\",\n            \"isActive\": true,\n            \"sequence\": 1,\n            \"createdAt\": \"2025-10-28T11:10:37+07:00\",\n            \"updatedAt\": \"2025-10-28T11:10:37+07:00\",\n            \"method\": [\n                {\n                    \"id\": 5,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 2,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:12:13.343688+07:00\",\n                    \"updated_at\": \"2025-10-28T11:12:13.343688+07:00\"\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Transfer Bank (Virtual Account)\",\n            \"code\": \"BANK_TRANSFER_VA\",\n            \"isActive\": true,\n            \"sequence\": 2,\n            \"createdAt\": \"2025-10-28T09:59:57+07:00\",\n            \"updatedAt\": \"2025-10-28T09:59:57+07:00\",\n            \"method\": [\n                {\n                    \"id\": 2,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:08:44.919041+07:00\",\n                    \"updated_at\": \"2025-10-28T11:08:44.919041+07:00\"\n                },\n                {\n                    \"id\": 3,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:11:28.814583+07:00\",\n                    \"updated_at\": \"2025-10-28T11:11:28.814583+07:00\"\n                }\n            ]\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				},
