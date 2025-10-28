@@ -1,0 +1,893 @@
+{
+	"info": {
+		"_postman_id": "612301db-7e03-40e4-a28c-7b71a0c9b27d",
+		"name": "Paymen Service - Borneo Link",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42218416"
+	},
+	"item": [
+		{
+			"name": "CMS",
+			"item": [
+				{
+					"name": "01. Bank",
+					"item": [
+						{
+							"name": "Add Bank",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/bank",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"bank"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Bank",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Bank BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/bank/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"bank",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Bank By ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/v1/bank/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"bank",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Bank",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/bank",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"bank"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Bank",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/bank/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"bank",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02. Payment Provider",
+					"item": [
+						{
+							"name": "Add Payment Provider",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/provider",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"provider"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Payment Provider",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Payment Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/provider/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"provider",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment Provider By ID",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Payment Provider",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/provider?search=midtrans",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"provider"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "midtrans"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Payment Provider",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/provider/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"provider",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03. Payment Category",
+					"item": [
+						{
+							"name": "Add Payment Category",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Payment Category",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/category/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment Category By ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/category/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Payment Category",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Payment Category",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+								},
+								"url": {
+									"raw": "{{url}}/v1/payment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "04. Payment Method",
+					"item": [
+						{
+							"name": "Add Payment Method",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\",\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/method",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"method"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CF",
+			"item": [
+				{
+					"name": "Pre Checkout",
+					"item": [
+						{
+							"name": "Payment List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/v1/paymentlist",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"paymentlist"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Checkout",
+					"item": [
+						{
+							"name": "Pay",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "channel",
+										"value": "Material",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"orderId\": \"872932980393\",\n\t\"paymentMethodId\": 2,\n\t\"adminFee\" : 389,\n    \"totalBayar\": 1600000,\n    \"items\" : [\n        {\n            \"id\": \"10\",\n            \"name\": \"Pasir 1 Rit\",\n            \"amount\": 800000,\n            \"qty\": 2\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/checkout/pay/:id/:channel",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"checkout",
+										"pay",
+										":id",
+										":channel"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										},
+										{
+											"key": "channel",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post Checkout",
+					"item": [
+						{
+							"name": "Notification",
+							"item": [
+								{
+									"name": "Notification - Midtrans",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"masked_card\": \"481111-1114\",\n\t\"approval_code\": \"T58755\",\n\t\"bank\": \"bni\",\n\t\"eci\": \"05\",\n\t\"transaction_time\": \"2014-08-24 15:39:22\",\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"signature_key\": \"9611ae4f180773893fc832f9fd082983709b77b1c17cbf294cbe792bfa850af5345062d775b71883969e70615094b6f6bb492974095f5468f756760bffa2bd0a\",\n\t\"status_code\": \"200\",\n\t\"transaction_id\": \"1a1a66f7-27a7-4844-ba1f-d86dcc16ab27\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\",\n\t\"status_message\": \"Veritrans payment notification\",\n\t\"channel_response_code\": \"00\",\n\t\"channel_response_message\": \"Approved\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/v1/notification/midtrans",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"notification",
+												"midtrans"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Notification - Default",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/v1/notification/default",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"notification",
+												"default"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
