@@ -19,8 +19,11 @@ type ResponseCategory struct {
 	Name      string `json:"name"`
 	Code      string `json:"code"`
 	IsActive  bool   `json:"isActive"`
+	Sequence  int    `json:"sequence"`
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
+
+	Method []shareddomain.PaymentMethod `json:"method,omitempty"`
 }
 
 // Serialize from db model
@@ -29,6 +32,10 @@ func (r *ResponseCategory) Serialize(source *shareddomain.PaymentCategory) {
 	r.Name = source.Name
 	r.Code = source.Code
 	r.IsActive = source.IsActive
+	r.Sequence = source.Sequence
 	r.CreatedAt = source.CreatedAt.Format(time.RFC3339)
 	r.UpdatedAt = source.UpdatedAt.Format(time.RFC3339)
+
+	// Method Relation
+	r.Method = source.Method
 }

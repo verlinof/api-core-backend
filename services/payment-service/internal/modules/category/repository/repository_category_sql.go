@@ -35,6 +35,29 @@ func NewCategoryRepoSQL(readDB, writeDB *gorm.DB) CategoryRepository {
 	}
 }
 
+func (r *categoryRepoSQL) FetchPaymentList(ctx context.Context, filter *domain.FilterCategory) (data []shareddomain.PaymentCategory, err error) {
+	trace, ctx := tracer.StartTraceWithContext(ctx, "CategoryRepoSQL:FetchAll")
+	defer func() { trace.Finish(tracer.FinishWithError(err)) }()
+
+	if filter.OrderBy == "" {
+		filter.OrderBy = "sequence"
+	}
+
+	db := r.setFilterCategory(shared.SetSpanToGorm(ctx, r.readDB), filter).Order(clause.OrderByColumn{
+		Column: clause.Column{Name: filter.OrderBy},
+		Desc:   strings.ToUpper(filter.Sort) == "ASC",
+	})
+	if filter.Limit > 0 || !filter.ShowAll {
+		db = db.Limit(filter.Limit).Offset(filter.CalculateOffset())
+	}
+
+	// Preload Method dan terapkan kondisi WHERE hanya pada method yang di-preload
+	db = db.Preload("Method", "is_active = ?", true)
+
+	err = db.Find(&data).Error
+	return
+}
+
 func (r *categoryRepoSQL) FetchAll(ctx context.Context, filter *domain.FilterCategory) (data []shareddomain.PaymentCategory, err error) {
 	trace, ctx := tracer.StartTraceWithContext(ctx, "CategoryRepoSQL:FetchAll")
 	defer func() { trace.Finish(tracer.FinishWithError(err)) }()

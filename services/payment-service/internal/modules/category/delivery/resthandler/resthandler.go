@@ -36,6 +36,9 @@ func NewRestHandler(uc usecase.Usecase, deps dependency.Dependency) *RestHandler
 // Mount handler with root "/"
 // handling version in here
 func (h *RestHandler) Mount(root interfaces.RESTRouter) {
+	v1PaymentList := root.Group(candihelper.V1+"/payment-list", h.mw.HTTPBasicAuth)
+	v1PaymentList.GET("/", h.getPaymentList)
+
 	v1Category := root.Group(candihelper.V1+"/category", h.mw.HTTPBasicAuth)
 
 	v1Category.GET("/", h.getAllCategory)
@@ -43,6 +46,48 @@ func (h *RestHandler) Mount(root interfaces.RESTRouter) {
 	v1Category.POST("/", h.createCategory)
 	v1Category.PUT("/:id", h.updateCategory)
 	v1Category.DELETE("/:id", h.deleteCategory)
+}
+
+// GetAllCategory documentation
+// @Summary			Get All Category
+// @Description		API for get all category
+// @Tags			Category
+// @Accept			json
+// @Produce			json
+// @Param			page	query	string	false	"Page with default value is 1"
+// @Param			limit	query	string	false	"Limit with default value is 10"
+// @Param			search	query	string	false	"Search"
+// @Param			orderBy	query	string	false	"Order By"
+// @Param			sort	query	string	false	"Sort (ASC DESC)"
+// @Success			200	{object}	domain.ResponseCategoryList
+// @Success			400	{object}	wrapper.HTTPResponse
+// @Security		ApiKeyAuth
+// @Router			/v1/payment-list [get]
+func (h *RestHandler) getPaymentList(rw http.ResponseWriter, req *http.Request) {
+	trace, ctx := tracer.StartTraceWithContext(req.Context(), "CategoryDeliveryREST:GetAllCategory")
+	defer trace.Finish()
+
+	var filter domain.FilterCategory
+	if err := candihelper.ParseFromQueryParam(req.URL.Query(), &filter); err != nil {
+		wrapper.NewHTTPResponse(http.StatusBadRequest, "Failed parse filter", err).JSON(rw)
+		return
+	}
+
+	if err := h.validator.ValidateDocument("category/get_all", filter); err != nil {
+		wrapper.NewHTTPResponse(http.StatusBadRequest, "Failed validate filter", err).JSON(rw)
+		return
+	}
+
+	result, err := h.uc.Category().GetPaymentList(ctx, &filter)
+	if err != nil {
+		wrapper.NewHTTPResponse(http.StatusBadRequest, err.Error()).JSON(rw)
+		return
+	}
+
+	message := "Success get all category, page " + strconv.Itoa(filter.Page) + " with " + strconv.Itoa(len(result.Data)) + " data"
+	response := wrapper.NewHTTPResponse(http.StatusOK, message, result.Data)
+	response.Meta = result.Meta
+	response.JSON(rw)
 }
 
 // GetAllCategory documentation

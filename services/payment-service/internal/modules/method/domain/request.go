@@ -10,7 +10,7 @@ type RequestMethod struct {
 	Code        string `json:"code"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	IconURL     string `json:"iconUrl"`
+	Icon        string `json:"icon"`
 	CategoryID  int    `json:"categoryId"`
 	BankID      int    `json:"bankId"`
 	ProviderID  int    `json:"providerId"`
@@ -22,7 +22,7 @@ func (r *RequestMethod) Deserialize() (res shareddomain.PaymentMethod) {
 	res.Code = r.Code
 	res.Name = r.Name
 	res.Description = r.Description
-	res.IconURL = r.IconURL
+	res.Icon = r.Icon
 	res.CategoryID = r.CategoryID
 	res.BankID = r.BankID
 	res.ProviderID = r.ProviderID

@@ -4,8 +4,8 @@ package repository
 
 import (
 	"context"
-
 	"strings"
+
 	"time"
 
 	"payment-service/internal/modules/method/domain"
@@ -35,8 +35,8 @@ func NewMethodRepoSQL(readDB, writeDB *gorm.DB) MethodRepository {
 	}
 }
 
-func (r *methodRepoSQL) FetchAll(ctx context.Context, filter *domain.FilterMethod) (data []shareddomain.PaymentMethod, err error) {
-	trace, ctx := tracer.StartTraceWithContext(ctx, "MethodRepoSQL:FetchAll")
+func (r *methodRepoSQL) FetchPaymentList(ctx context.Context, filter *domain.FilterMethod) (data []shareddomain.PaymentProvider, err error) {
+	trace, ctx := tracer.StartTraceWithContext(ctx, "CategoryRepoSQL:FetchAll")
 	defer func() { trace.Finish(tracer.FinishWithError(err)) }()
 
 	if filter.OrderBy == "" {
@@ -49,6 +49,23 @@ func (r *methodRepoSQL) FetchAll(ctx context.Context, filter *domain.FilterMetho
 	})
 	if filter.Limit > 0 || !filter.ShowAll {
 		db = db.Limit(filter.Limit).Offset(filter.CalculateOffset())
+	}
+	err = db.Find(&data).Error
+	return
+}
+
+func (r *methodRepoSQL) FetchAll(ctx context.Context, filter *domain.FilterMethod) (data []shareddomain.PaymentMethod, err error) {
+	trace, ctx := tracer.StartTraceWithContext(ctx, "MethodRepoSQL:FetchAll")
+	defer func() { trace.Finish(tracer.FinishWithError(err)) }()
+
+	db := shared.SetSpanToGorm(ctx, r.readDB).
+		Joins("JOIN payment_category ON payment_category.id = payment_method.category_id")
+
+	db = r.setFilterMethod(db, filter).
+		Order("payment_category.sequence ASC")
+
+	if filter.Limit > 0 || !filter.ShowAll {
+		db = db.Limit(filter.Limit).Offset(filter.CalculateOffset()) // Menambahkan paginasi
 	}
 	err = db.Find(&data).Error
 	return
@@ -109,10 +126,11 @@ func (r *methodRepoSQL) Delete(ctx context.Context, filter *domain.FilterMethod)
 func (r *methodRepoSQL) setFilterMethod(db *gorm.DB, filter *domain.FilterMethod) *gorm.DB {
 
 	if filter.ID != nil {
-		db = db.Where("id = ?", *filter.ID)
+		db = db.Where("payment_method.id = ?", *filter.ID)
 	}
 	if filter.Search != "" {
-		db = db.Where("(field ILIKE '%%' || ? || '%%')", filter.Search)
+		// Perbaikan: Mengganti 'field' yang ambigu dengan kolom yang spesifik.
+		db = db.Where("(payment_method.name ILIKE ? OR payment_method.code ILIKE ?)", "%"+filter.Search+"%", "%"+filter.Search+"%")
 	}
 
 	for _, preload := range filter.Preloads {

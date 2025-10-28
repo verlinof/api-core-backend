@@ -15,8 +15,9 @@ import (
 // CategoryUsecase abstraction
 type CategoryUsecase interface {
 	GetAllCategory(ctx context.Context, filter *domain.FilterCategory) (data domain.ResponseCategoryList, err error)
+	GetPaymentList(ctx context.Context, filter *domain.FilterCategory) (data domain.ResponseCategoryList, err error)
 	GetDetailCategory(ctx context.Context, id int) (data domain.ResponseCategory, err error)
-	CreateCategory(ctx context.Context, data *domain.RequestCategory) (res domain.ResponseCategory, err error) 
+	CreateCategory(ctx context.Context, data *domain.RequestCategory) (res domain.ResponseCategory, err error)
 	UpdateCategory(ctx context.Context, data *domain.RequestCategory) (err error)
 	DeleteCategory(ctx context.Context, id int) (err error)
 }
@@ -32,9 +33,9 @@ type categoryUsecaseImpl struct {
 func NewCategoryUsecase(deps dependency.Dependency) (CategoryUsecase, func(sharedUsecase common.Usecase)) {
 	uc := &categoryUsecaseImpl{
 		deps:    deps,
-		repoSQL:   repository.GetSharedRepoSQL(),
+		repoSQL: repository.GetSharedRepoSQL(),
 		// repoMongo: repository.GetSharedRepoMongo(),
-		
+
 	}
 	return uc, func(sharedUsecase common.Usecase) {
 		uc.sharedUsecase = sharedUsecase

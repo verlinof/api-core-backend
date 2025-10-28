@@ -21,7 +21,7 @@ func (uc *methodUsecaseImpl) UpdateMethod(ctx context.Context, data *domain.Requ
 	existing.Code = data.Code
 	existing.Name = data.Name
 	existing.Description = data.Description
-	existing.IconURL = data.IconURL
+	existing.Icon = data.Icon
 	existing.CategoryID = data.CategoryID
 	existing.BankID = data.BankID
 	existing.ProviderID = data.ProviderID

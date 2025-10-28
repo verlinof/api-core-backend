@@ -13,6 +13,8 @@ type PaymentCategory struct {
 	IsActive  bool      `gorm:"column:is_active" json:"is_active"`
 	CreatedAt time.Time `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at" json:"updated_at"`
+
+	Method []PaymentMethod `gorm:"foreignKey:CategoryID;references:ID" json:"method,omitempty"`
 }
 
 // TableName return table name of Category model
