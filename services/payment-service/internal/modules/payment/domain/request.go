@@ -34,7 +34,7 @@ type CreateOrderRequest struct {
 	OrderID  string         `json:"order_id"`
 	Amount   int64          `json:"amount"`
 	Channel  string         `json:"channel"`
-	MethodID int            `json:"method_id"`
+	MethodID *int           `json:"method_id"`
 	Customer CustomerDetail `json:"customer"`
 	Items    []ItemDetail   `json:"items"`
 }

@@ -7,7 +7,7 @@ import (
 type PaymentOrder struct {
 	ID                int            `gorm:"column:id;primary_key" json:"id"`
 	OrderID           string         `gorm:"column:order_id" json:"order_id"`
-	MethodID          int            `gorm:"column:method_id" json:"method_id"`
+	MethodID          *int           `gorm:"column:method_id" json:"method_id"`
 	Amount            float64        `gorm:"column:amount;type:decimal(20,2)" json:"amount"`
 	Status            string         `gorm:"column:status;type:varchar(50)" json:"status"`
 	FraudStatus       string         `gorm:"column:fraud_status;type:varchar(50)" json:"fraud_status"`
