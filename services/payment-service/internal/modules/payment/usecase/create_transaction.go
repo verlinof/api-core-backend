@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"payment-service/internal/modules/payment/domain"
 	pkg_midtrans "payment-service/pkg/helper/midtrans"
+	"strconv"
 	"time"
 
 	shareddomain "payment-service/pkg/shared/domain"
@@ -19,7 +20,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	trace, ctx := tracer.StartTraceWithContext(ctx, "PaymentUsecase:CreateTransaction")
 	defer trace.Finish()
 
-	// 1. Create and save the order to the database with "PENDING" status.
+	// 1. Siapkan data Order
 	orderDataJSON, _ := json.Marshal(req)
 	order := shareddomain.PaymentOrder{
 		OrderID:   req.OrderID,
@@ -30,7 +31,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 		OrderData: string(orderDataJSON),
 	}
 
-	// Map items from request to midtrans.ItemDetails
+	// 2. Siapkan data untuk request ke Midtrans
 	var itemDetails []midtrans.ItemDetails
 	for _, item := range req.Items {
 		itemDetails = append(itemDetails, midtrans.ItemDetails{
@@ -60,23 +61,51 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 		},
 	}
 
-	// hit midtrans
+	if req.MethodID != nil {
+		selectedPaymentType, ok := domain.PaymentMethodMap[*req.MethodID]
+		if !ok {
+			return nil, fmt.Errorf("invalid payment method ID: %d", *req.MethodID)
+		}
+		snapReq.EnabledPayments = []snap.SnapPaymentType{selectedPaymentType}
+	}
+
+	// 3. Panggil API Midtrans
 	snapResp, midtransErr := pkg_midtrans.SnapClient.CreateTransaction(snapReq)
 	if midtransErr != nil {
-		return nil, fmt.Errorf("payment error: %s", midtransErr.Message)
+		// Log for Error
+		go uc.createPaymentLog(context.Background(), &order, snapReq, midtransErr, snapResp)
+		return nil, fmt.Errorf("midtrans error: %s", midtransErr.Message)
 	}
 
 	// Save DB order
 	if err := uc.repoSQL.PaymentRepo().Save(ctx, &order); err != nil {
 		return nil, fmt.Errorf("failed to save order: %w", err)
 	}
+	// Log if success
+	go uc.createPaymentLog(context.Background(), &order, snapReq, snapResp, snapResp)
 
-	// Buat response yang terstruktur
 	response := &domain.CreateTransactionResponse{
 		Token:       snapResp.Token,
 		RedirectURL: snapResp.RedirectURL,
 		OrderID:     req.OrderID,
 	}
-
 	return response, nil
+}
+
+// createPaymentLogWithRepo adalah inti logika pembuatan log yang menerima interface repository.
+func (uc *paymentUsecaseImpl) createPaymentLog(ctx context.Context, order *shareddomain.PaymentOrder, reqPayload, respPayload interface{}, snapRes *snap.Response) error {
+	reqJSON, _ := json.Marshal(reqPayload)
+	respJSON, _ := json.Marshal(respPayload)
+
+	statusCode, _ := strconv.Atoi(snapRes.StatusCode)
+
+	logEntry := &shareddomain.PaymentLog{
+		OrderID:    order.ID,
+		StatusCode: statusCode,
+		Request:    string(reqJSON),
+		Response:   string(respJSON),
+		PaymentURL: snapRes.RedirectURL,
+	}
+
+	return uc.repoSQL.PaymentRepo().SaveLog(ctx, logEntry, *order.MethodID)
 }

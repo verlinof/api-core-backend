@@ -37,6 +37,7 @@ func (h *RestHandler) Mount(root interfaces.RESTRouter) {
 	v1Payment := root.Group(candihelper.V1+"/payment", h.mw.HTTPBasicAuth)
 
 	v1Payment.POST("/checkout/pay", h.createTransaction)
+	// root.POST("/payment/notification", h.paymentNotification) // Endpoint untuk notifikasi Midtrans, tanpa auth
 }
 
 // createTransaction documentation
@@ -75,3 +76,29 @@ func (h *RestHandler) createTransaction(rw http.ResponseWriter, req *http.Reques
 
 	wrapper.NewHTTPResponse(http.StatusOK, "Transaction created successfully", resp).JSON(rw)
 }
+
+// func (h *RestHandler) paymentNotification(rw http.ResponseWriter, req *http.Request) {
+// 	trace, ctx := tracer.StartTraceWithContext(req.Context(), "PaymentDeliveryREST:PaymentNotification")
+// 	defer trace.Finish()
+
+// 	var payload map[string]interface{}
+// 	if err := json.NewDecoder(req.Body).Decode(&payload); err != nil {
+// 		log.Printf("[Webhook] Error parsing body: %v\n", err)
+// 		wrapper.NewHTTPResponse(http.StatusBadRequest, "Cannot parse request body").JSON(rw)
+// 		return
+// 	}
+
+// 	trace.SetTag("order_id", payload["order_id"])
+// 	log.Printf("[Webhook] Received notification payload: %+v", payload)
+
+// 	err := h.uc.Payment().ProcessPaymentNotification(ctx, payload)
+// 	if err != nil {
+// 		// Jika ada error dari usecase (misal: tidak bisa konek ke Midtrans atau DB),
+// 		// kembalikan 500 agar Midtrans mencoba mengirim ulang notifikasi.
+// 		wrapper.NewHTTPResponse(http.StatusInternalServerError, err.Error()).JSON(rw)
+// 		return
+// 	}
+
+// 	// WAJIB, agar Midtrans tahu notifikasinya sudah diterima & berhenti mengirim ulang.
+// 	wrapper.NewHTTPResponse(http.StatusOK, "ok").JSON(rw)
+// }

@@ -10,4 +10,6 @@ import (
 // PaymentRepository abstract interface
 type PaymentRepository interface {
 	Save(ctx context.Context, data *shareddomain.PaymentOrder) error
+	FindByOrderID(ctx context.Context, orderID string) (*shareddomain.PaymentOrder, error)
+	SaveLog(ctx context.Context, log *shareddomain.PaymentLog, methodID int) error
 }

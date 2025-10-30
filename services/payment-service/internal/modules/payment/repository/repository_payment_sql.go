@@ -6,6 +6,7 @@ import (
 	"context"
 	"payment-service/internal/modules/payment/domain"
 	shareddomain "payment-service/pkg/shared/domain"
+	"time"
 
 	"github.com/golangid/candi/candishared"
 
@@ -28,7 +29,6 @@ func NewPaymentRepoSQL(readDB, writeDB *gorm.DB) PaymentRepository {
 }
 
 func (r *paymentRepoSQL) setFilterPayment(db *gorm.DB, filter *domain.FilterPayment) *gorm.DB {
-
 	if filter.ID != nil {
 		db = db.Where("id = ?", *filter.ID)
 	}
@@ -45,4 +45,20 @@ func (r *paymentRepoSQL) setFilterPayment(db *gorm.DB, filter *domain.FilterPaym
 
 func (r *paymentRepoSQL) Save(ctx context.Context, data *shareddomain.PaymentOrder) error {
 	return r.writeDB.WithContext(ctx).Save(data).Error
+}
+
+func (r *paymentRepoSQL) FindByOrderID(ctx context.Context, orderID string) (*shareddomain.PaymentOrder, error) {
+	var paymentOrder shareddomain.PaymentOrder
+
+	err := r.readDB.WithContext(ctx).Where("order_id", orderID).First(&paymentOrder).Error
+	return &paymentOrder, err
+}
+
+func (r *paymentRepoSQL) SaveLog(ctx context.Context, log *shareddomain.PaymentLog, methodID int) error {
+	log.CreatedAt = time.Now()
+	_ = r.readDB.Table("payment_method").
+		Select("payment_method.provider_id").
+		Where("payment_method.id = ?", methodID).Scan(&log.ProviderID)
+
+	return r.writeDB.WithContext(ctx).Create(log).Error
 }

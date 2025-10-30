@@ -79,6 +79,13 @@
       "required": ["id", "name", "price", "qty"]
     }
   },
-  "required": ["order_id", "amount", "channel", "customer", "items"],
+  "required": [
+    "order_id",
+    "amount",
+    "channel",
+    "customer",
+    "items",
+    "method_id"
+  ],
   "additionalProperties": true
 }
