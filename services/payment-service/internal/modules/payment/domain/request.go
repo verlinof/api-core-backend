@@ -2,6 +2,8 @@ package domain
 
 import (
 	shareddomain "payment-service/pkg/shared/domain"
+
+	"github.com/midtrans/midtrans-go/snap"
 )
 
 // RequestPayment model
@@ -14,6 +16,12 @@ type RequestPayment struct {
 func (r *RequestPayment) Deserialize() (res shareddomain.Payment) {
 	res.Field = r.Field
 	return
+}
+
+var PaymentMethodMap = map[int]snap.SnapPaymentType{
+	1: snap.PaymentTypeBNIVA,
+	2: snap.PaymentTypeBCAVA,
+	3: snap.PaymentTypeBRIVA,
 }
 
 type CustomerDetail struct {
