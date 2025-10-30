@@ -6,6 +6,7 @@ import (
 	"context"
 	"payment-service/internal/modules/payment/domain"
 	"payment-service/pkg/shared/repository"
+	"payment-service/pkg/shared/service"
 	"payment-service/pkg/shared/usecase/common"
 
 	"github.com/golangid/candi/codebase/factory/dependency"
@@ -25,6 +26,7 @@ type paymentUsecaseImpl struct {
 	deps          dependency.Dependency
 	sharedUsecase common.Usecase
 	repoSQL       repository.RepoSQL
+	service       service.Service
 	// repoMongo     repository.RepoMongo
 }
 
@@ -33,8 +35,8 @@ func NewPaymentUsecase(deps dependency.Dependency) (PaymentUsecase, func(sharedU
 	uc := &paymentUsecaseImpl{
 		deps:    deps,
 		repoSQL: repository.GetSharedRepoSQL(),
+		service: deps.GetExtended(service.KeyExternalService).(service.Service),
 		// repoMongo: repository.GetSharedRepoMongo(),
-
 	}
 	return uc, func(sharedUsecase common.Usecase) {
 		uc.sharedUsecase = sharedUsecase

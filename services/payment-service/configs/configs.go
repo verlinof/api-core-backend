@@ -8,6 +8,7 @@ import (
 	"payment-service/api"
 	"payment-service/pkg/shared"
 	"payment-service/pkg/shared/repository"
+	sharedservice "payment-service/pkg/shared/service"
 	"payment-service/pkg/shared/usecase"
 
 	"github.com/golangid/candi/broker"
@@ -59,6 +60,11 @@ func LoadServiceConfigs(baseCfg *config.Config) (deps dependency.Dependency) {
 			dependency.SetLocker(locker),
 			dependency.SetRedisPool(redisDeps),
 			dependency.SetSQLDatabase(sqlDeps),
+			// register external services into dependency extended map
+			// so modules/usecases can retrieve them via deps.GetExtended(key)
+			dependency.SetExtended(map[string]interface{}{
+				sharedservice.KeyExternalService: sharedservice.New(),
+			}),
 			// dependency.SetMongoDatabase(mongoDeps),
 			// ... add more dependencies
 		)

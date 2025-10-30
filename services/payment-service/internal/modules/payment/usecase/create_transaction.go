@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"payment-service/internal/modules/payment/domain"
-	pkg_midtrans "payment-service/pkg/helper/midtrans"
 	"strconv"
 	"time"
 
@@ -70,11 +69,12 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	}
 
 	// 3. Panggil API Midtrans
-	snapResp, midtransErr := pkg_midtrans.SnapClient.CreateTransaction(snapReq)
+	snapResp, midtransErr := uc.service.Midtrans().SnapCreateTransaction(snapReq)
+
 	if midtransErr != nil {
 		// Log for Error
 		go uc.createPaymentLog(context.Background(), &order, snapReq, midtransErr, snapResp)
-		return nil, fmt.Errorf("midtrans error: %s", midtransErr.Message)
+		return nil, fmt.Errorf("midtrans error: %s", midtransErr)
 	}
 
 	// Save DB order
