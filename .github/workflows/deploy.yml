@@ -68,6 +68,6 @@ jobs:
             docker load -i /tmp/\$SERVICE.tar
             docker stop \$SERVICE || true
             docker rm \$SERVICE || true
-            docker run -d --name \$SERVICE --expose ${{ vars.HTTP_PORT }} --network logistik_nginx_proxy_manager_default \$SERVICE:latest  # Ganti port sesuai kebutuhan
+            docker run -d --name \$SERVICE --expose ${{ vars.HTTP_PORT }} \$SERVICE:latest  # Ganti port sesuai kebutuhan
           done
         EOF
