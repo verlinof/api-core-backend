@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	// @candi:usecaseImport
+	paymentusecase "payment-service/internal/modules/payment/usecase"
 	bankusecase "payment-service/internal/modules/bank/usecase"
 	categoryusecase "payment-service/internal/modules/category/usecase"
 	methodusecase "payment-service/internal/modules/method/usecase"
@@ -19,6 +20,7 @@ type (
 	// Usecase unit of work for all usecase in modules
 	Usecase interface {
 		// @candi:usecaseMethod
+		Payment() paymentusecase.PaymentUsecase
 		Provider() providerusecase.ProviderUsecase
 		Method() methodusecase.MethodUsecase
 		Category() categoryusecase.CategoryUsecase
@@ -27,6 +29,7 @@ type (
 
 	usecaseUow struct {
 		// @candi:usecaseField
+		paymentusecase.PaymentUsecase
 		providerusecase.ProviderUsecase
 		methodusecase.MethodUsecase
 		categoryusecase.CategoryUsecase
@@ -45,6 +48,8 @@ func SetSharedUsecase(deps dependency.Dependency) {
 		var setSharedUsecaseFunc func(common.Usecase)
 
 		// @candi:usecaseCommon
+		usecaseInst.PaymentUsecase, setSharedUsecaseFunc = paymentusecase.NewPaymentUsecase(deps)
+		setSharedUsecaseFuncs = append(setSharedUsecaseFuncs, setSharedUsecaseFunc)
 		usecaseInst.ProviderUsecase, setSharedUsecaseFunc = providerusecase.NewProviderUsecase(deps)
 		setSharedUsecaseFuncs = append(setSharedUsecaseFuncs, setSharedUsecaseFunc)
 		usecaseInst.MethodUsecase, setSharedUsecaseFunc = methodusecase.NewMethodUsecase(deps)
@@ -67,6 +72,10 @@ func GetSharedUsecase() Usecase {
 }
 
 // @candi:usecaseImplementation
+func (uc *usecaseUow) Payment() paymentusecase.PaymentUsecase {
+	return uc.PaymentUsecase
+}
+
 func (uc *usecaseUow) Provider() providerusecase.ProviderUsecase {
 	return uc.ProviderUsecase
 }

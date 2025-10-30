@@ -5,12 +5,14 @@ package main
 import (
 	"fmt"
 	"runtime/debug"
+
 	_ "github.com/lib/pq"
 
 	"github.com/golangid/candi/codebase/app"
 	"github.com/golangid/candi/config"
 
 	service "payment-service/internal"
+	pkg_midtrans "payment-service/pkg/helper/midtrans"
 )
 
 func main() {
@@ -23,6 +25,7 @@ func main() {
 		}
 	}()
 
+	pkg_midtrans.Init()
 	cfg := config.Init(serviceName)
 	defer cfg.Exit()
 
