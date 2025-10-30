@@ -34,9 +34,9 @@ func NewRestHandler(uc usecase.Usecase, deps dependency.Dependency) *RestHandler
 // Mount handler with root "/"
 // handling version in here
 func (h *RestHandler) Mount(root interfaces.RESTRouter) {
-	v1Payment := root.Group(candihelper.V1+"/payment", h.mw.HTTPBearerAuth)
+	v1Payment := root.Group(candihelper.V1+"/payment", h.mw.HTTPBasicAuth)
 
-	v1Payment.POST("/checkout/pay", h.createTransaction, h.mw.HTTPPermissionACL("createTransaction"))
+	v1Payment.POST("/checkout/pay", h.createTransaction)
 }
 
 // createTransaction documentation

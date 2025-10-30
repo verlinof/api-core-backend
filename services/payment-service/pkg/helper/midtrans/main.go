@@ -43,5 +43,5 @@ func Init() {
 	// 4. Inisialisasi CoreAPI Client
 	CoreApiClient.New(serverKey, env)
 
-	log.Println("Midtrans Clients Initialized. Environment:", env)
+	log.Println("Midtrans Clients Initialized. Environment:", serverKey)
 }
