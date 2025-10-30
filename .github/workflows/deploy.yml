@@ -42,6 +42,10 @@ jobs:
           echo "SQL_DB_READ_DSN=${{ secrets.SQL_DB_READ_DSN }}" >> ./services/$SERVICE/.env          
           echo "SQL_DB_WRITE_DSN=${{ secrets.SQL_DB_WRITE_DSN }}" >> ./services/$SERVICE/.env
           echo "HTTP_PORT=${{ vars.HTTP_PORT }}" >> ./services/$SERVICE/.env
+          echo "MIDTRANS_ENV=${{ vars.MIDTRANS_ENV }}" >> ./services/$SERVICE/.env
+          echo "MIDTRANS_MERCHANT_ID=${{ vars.MIDTRANS_MERCHANT_ID }}" >> ./services/$SERVICE/.env
+          echo "MIDTRANS_SERVER_KEY=${{ secrets.MIDTRANS_SERVER_KEY }}" >> ./services/$SERVICE/.env
+          echo "MIDTRANS_CLIENT_KEY=${{ vars.MIDTRANS_CLIENT_KEY }}" >> ./services/$SERVICE/.env
 
           IMAGE_NAME=$SERVICE:latest
           echo "🛠️ Building $IMAGE_NAME"
