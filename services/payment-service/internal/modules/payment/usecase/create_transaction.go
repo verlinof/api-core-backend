@@ -21,7 +21,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	defer trace.Finish()
 
 	// 1. Siapkan data Order
-	orderDataJSON, _ := json.Marshal(req)
+	orderDataJSON, _ := json.Marshal(req.Items)
 	order := shareddomain.PaymentOrder{
 		OrderID:   req.OrderID,
 		Amount:    float64(req.Amount),
