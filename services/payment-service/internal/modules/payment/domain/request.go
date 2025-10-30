@@ -18,12 +18,23 @@ func (r *RequestPayment) Deserialize() (res shareddomain.Payment) {
 
 type CustomerDetail struct {
 	FirstName string `json:"first_name" validate:"required"`
+	LastName  string `json:"last_name" validate:"required"`
 	Email     string `json:"email" validate:"required,email"`
 	Phone     string `json:"phone" validate:"required"`
+}
+
+type ItemDetail struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Price int64  `json:"price"`
+	Qty   int32  `json:"qty"`
 }
 
 type CreateOrderRequest struct {
 	OrderID  string         `json:"order_id"`
 	Amount   int64          `json:"amount"`
-	Customer CustomerDetail `json:"customer_detail"`
+	Channel  string         `json:"channel"`
+	MethodID int            `json:"method_id"`
+	Customer CustomerDetail `json:"customer"`
+	Items    []ItemDetail   `json:"items"`
 }

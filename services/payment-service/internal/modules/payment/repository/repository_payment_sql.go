@@ -3,7 +3,9 @@
 package repository
 
 import (
+	"context"
 	"payment-service/internal/modules/payment/domain"
+	shareddomain "payment-service/pkg/shared/domain"
 
 	"github.com/golangid/candi/candishared"
 
@@ -39,4 +41,8 @@ func (r *paymentRepoSQL) setFilterPayment(db *gorm.DB, filter *domain.FilterPaym
 	}
 
 	return db
+}
+
+func (r *paymentRepoSQL) Save(ctx context.Context, data *shareddomain.PaymentOrder) error {
+	return r.writeDB.WithContext(ctx).Save(data).Error
 }

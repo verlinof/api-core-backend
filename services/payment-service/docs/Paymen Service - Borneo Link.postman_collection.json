@@ -854,8 +854,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"order_id\": \"ORDER-{{$randomInt}}-\",\n    \"amount\": 50000,\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
-                  "raw": "{\n    \"order_id\": \"ORDER-{{$randomInt}}\",\n    \"amount\": 50000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                  "raw": "{\n    \"order_id\": \"ORDER-{{$randomInt}}\",\n    \"amount\": 1600000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    },\n    \"items\": [\n        {\n            \"id\": \"ITEM-01\",\n            \"name\": \"Pasir 1 Rit\",\n            \"price\": 800000,\n            \"qty\": 2\n        }\n    ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -877,8 +876,7 @@
                     "header": [],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"order_id\": \"ORDER-12345-67890\",\n    \"amount\": 50000,\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
-                      "raw": "{\n    \"order_id\": \"ORDER-12345-67890\",\n    \"amount\": 50000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                      "raw": "{\n    \"order_id\": \"ORDER-12345-67890\",\n    \"amount\": 1600000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    },\n    \"items\": [\n        {\n            \"id\": \"ITEM-01\",\n            \"name\": \"Pasir 1 Rit\",\n            \"price\": 800000,\n            \"qty\": 2\n        }\n    ]\n}",
                       "options": {
                         "raw": {
                           "language": "json"

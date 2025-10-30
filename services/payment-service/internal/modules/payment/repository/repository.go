@@ -2,6 +2,12 @@
 
 package repository
 
+import (
+	"context"
+	shareddomain "payment-service/pkg/shared/domain"
+)
+
 // PaymentRepository abstract interface
 type PaymentRepository interface {
+	Save(ctx context.Context, data *shareddomain.PaymentOrder) error
 }
