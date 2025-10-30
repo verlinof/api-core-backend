@@ -1,1079 +1,1010 @@
 {
-	"info": {
-		"_postman_id": "4746a88f-d9a1-4847-9035-0e0a04f97463",
-		"name": "Paymen Service - Borneo Link",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29516691"
-	},
-	"item": [
-		{
-			"name": "CMS",
-			"item": [
-				{
-					"name": "01. Bank",
-					"item": [
-						{
-							"name": "Add Bank",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/bank",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"bank"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Edit Bank",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Bank BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": false\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/bank/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"bank",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Bank By ID",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{url}}/v1/bank/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"bank",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Bank",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/bank",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"bank"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Bank",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/bank/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"bank",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "02. Payment Provider",
-					"item": [
-						{
-							"name": "Add Payment Provider",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/provider",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"provider"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Edit Payment Provider",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Payment Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/provider/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"provider",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Payment Provider By ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": ""
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Payment Provider",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/provider",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"provider"
-									],
-									"query": [
-										{
-											"key": "search",
-											"value": "midtrans",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Payment Provider",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/provider/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"provider",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "03. Payment Category",
-					"item": [
-						{
-							"name": "Add Payment Category",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/category",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"category"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Edit Payment Category",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/category/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"category",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Payment Category By ID",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/category/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"category",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Payment Category",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/category?preload=method",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"category"
-									],
-									"query": [
-										{
-											"key": "preload",
-											"value": "method"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Payment Category",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
-								},
-								"url": {
-									"raw": "{{url}}/v1/payment",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"payment"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "04. Payment Method",
-					"item": [
-						{
-							"name": "Add Payment Method",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/method",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"method"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "Add Payment Method",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/v1/method",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"v1",
-												"method"
-											]
-										}
-									},
-									"status": "Created",
-									"code": 201,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Date",
-											"value": "Tue, 28 Oct 2025 04:12:13 GMT"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Content-Length",
-											"value": "362"
-										},
-										{
-											"key": "Www-Authenticate",
-											"value": "Basic realm=\"\""
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true,\n    \"code\": 201,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": 5,\n        \"code\": \"BCA_VA\",\n        \"name\": \"BCA Virtual Account\",\n        \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n        \"icon\": \"https://example.com/icons/bca_va.png\",\n        \"categoryID\": 2,\n        \"bankID\": 1,\n        \"providerID\": 1,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n        \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "Get Payment Method",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/v1/method",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"method"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "Get Payment Method",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{url}}/v1/method",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"v1",
-												"method"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Date",
-											"value": "Tue, 28 Oct 2025 04:12:16 GMT"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Content-Length",
-											"value": "1054"
-										},
-										{
-											"key": "Www-Authenticate",
-											"value": "Basic realm=\"\""
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all method\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 5,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 2,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n            \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n        },\n        {\n            \"id\": 3,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:11:28+07:00\",\n            \"updatedAt\": \"2025-10-28T11:11:28+07:00\"\n        },\n        {\n            \"id\": 2,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:08:44+07:00\",\n            \"updatedAt\": \"2025-10-28T11:08:44+07:00\"\n        }\n    ]\n}"
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "CF",
-			"item": [
-				{
-					"name": "Pre Checkout",
-					"item": [
-						{
-							"name": "Get Payment List",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/payment-list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"payment-list"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "Get Payment List",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/v1/payment-list",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"v1",
-												"payment-list"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Date",
-											"value": "Tue, 28 Oct 2025 06:02:12 GMT"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Content-Length",
-											"value": "1506"
-										},
-										{
-											"key": "Www-Authenticate",
-											"value": "Basic realm=\"\""
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all category, page 1 with 2 data\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Internal Provider\",\n            \"code\": \"INTERNAL\",\n            \"isActive\": true,\n            \"sequence\": 1,\n            \"createdAt\": \"2025-10-28T11:10:37+07:00\",\n            \"updatedAt\": \"2025-10-28T11:10:37+07:00\",\n            \"method\": [\n                {\n                    \"id\": 5,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 2,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:12:13.343688+07:00\",\n                    \"updated_at\": \"2025-10-28T11:12:13.343688+07:00\"\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Transfer Bank (Virtual Account)\",\n            \"code\": \"BANK_TRANSFER_VA\",\n            \"isActive\": true,\n            \"sequence\": 2,\n            \"createdAt\": \"2025-10-28T09:59:57+07:00\",\n            \"updatedAt\": \"2025-10-28T09:59:57+07:00\",\n            \"method\": [\n                {\n                    \"id\": 2,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:08:44.919041+07:00\",\n                    \"updated_at\": \"2025-10-28T11:08:44.919041+07:00\"\n                },\n                {\n                    \"id\": 3,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:11:28.814583+07:00\",\n                    \"updated_at\": \"2025-10-28T11:11:28.814583+07:00\"\n                }\n            ]\n        }\n    ]\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "Checkout",
-					"item": [
-						{
-							"name": "Pay",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "channel",
-										"value": "Material",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"orderId\": \"872932980393\",\n\t\"paymentMethodId\": 2,\n\t\"adminFee\" : 389,\n    \"totalBayar\": 1600000,\n    \"items\" : [\n        {\n            \"id\": \"10\",\n            \"name\": \"Pasir 1 Rit\",\n            \"amount\": 800000,\n            \"qty\": 2\n        }\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/v1/checkout/pay/:id/:channel",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"v1",
-										"checkout",
-										"pay",
-										":id",
-										":channel"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										},
-										{
-											"key": "channel",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Post Checkout",
-					"item": [
-						{
-							"name": "Notification",
-							"item": [
-								{
-									"name": "Notification - Midtrans",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"masked_card\": \"481111-1114\",\n\t\"approval_code\": \"T58755\",\n\t\"bank\": \"bni\",\n\t\"eci\": \"05\",\n\t\"transaction_time\": \"2014-08-24 15:39:22\",\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"signature_key\": \"9611ae4f180773893fc832f9fd082983709b77b1c17cbf294cbe792bfa850af5345062d775b71883969e70615094b6f6bb492974095f5468f756760bffa2bd0a\",\n\t\"status_code\": \"200\",\n\t\"transaction_id\": \"1a1a66f7-27a7-4844-ba1f-d86dcc16ab27\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\",\n\t\"status_message\": \"Veritrans payment notification\",\n\t\"channel_response_code\": \"00\",\n\t\"channel_response_message\": \"Approved\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/v1/notification/midtrans",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"v1",
-												"notification",
-												"midtrans"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Notification - Default",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/v1/notification/default",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"v1",
-												"notification",
-												"default"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						}
-					]
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "4746a88f-d9a1-4847-9035-0e0a04f97463",
+    "name": "Paymen Service - Borneo Link",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29516691"
+  },
+  "item": [
+    {
+      "name": "CMS",
+      "item": [
+        {
+          "name": "01. Bank",
+          "item": [
+            {
+              "name": "Add Bank",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/bank",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "bank"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Edit Bank",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Bank BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/bank/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "bank", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Bank By ID",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{url}}/v1/bank/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "bank", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Bank",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/bank",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "bank"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Bank",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/bank/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "bank", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02. Payment Provider",
+          "item": [
+            {
+              "name": "Add Payment Provider",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/provider",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "provider"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Edit Payment Provider",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Payment Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/provider/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "provider", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Payment Provider By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": ""
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Payment Provider",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"BRI\",\n    \"code\": \"BRI\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/provider",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "provider"],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "midtrans",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Payment Provider",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/provider/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "provider", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "03. Payment Category",
+          "item": [
+            {
+              "name": "Add Payment Category",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/category",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "category"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Edit Payment Category",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/category/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "category", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Payment Category By ID",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/category/:id",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "category", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Payment Category",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/category?preload=method",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "category"],
+                  "query": [
+                    {
+                      "key": "preload",
+                      "value": "method"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Payment Category",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}"
+                },
+                "url": {
+                  "raw": "{{url}}/v1/payment",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "payment"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "04. Payment Method",
+          "item": [
+            {
+              "name": "Add Payment Method",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/method",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "method"]
+                }
+              },
+              "response": [
+                {
+                  "name": "Add Payment Method",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"code\": \"BCA_VA\",\n    \"name\": \"BCA Virtual Account\",\n    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n    \"icon\": \"https://example.com/icons/bca_va.png\",\n    \"categoryId\": 2,\n    \"bankId\": 1,\n    \"providerId\": 1,\n    \"isActive\": true\n}\n",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/v1/method",
+                      "host": ["{{url}}"],
+                      "path": ["v1", "method"]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Date",
+                      "value": "Tue, 28 Oct 2025 04:12:13 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "362"
+                    },
+                    {
+                      "key": "Www-Authenticate",
+                      "value": "Basic realm=\"\""
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"code\": 201,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": 5,\n        \"code\": \"BCA_VA\",\n        \"name\": \"BCA Virtual Account\",\n        \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n        \"icon\": \"https://example.com/icons/bca_va.png\",\n        \"categoryID\": 2,\n        \"bankID\": 1,\n        \"providerID\": 1,\n        \"isActive\": true,\n        \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n        \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Payment Method",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/v1/method",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "method"]
+                }
+              },
+              "response": [
+                {
+                  "name": "Get Payment Method",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{url}}/v1/method",
+                      "host": ["{{url}}"],
+                      "path": ["v1", "method"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Date",
+                      "value": "Tue, 28 Oct 2025 04:12:16 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1054"
+                    },
+                    {
+                      "key": "Www-Authenticate",
+                      "value": "Basic realm=\"\""
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all method\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 5,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 2,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:12:13+07:00\",\n            \"updatedAt\": \"2025-10-28T11:12:13+07:00\"\n        },\n        {\n            \"id\": 3,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:11:28+07:00\",\n            \"updatedAt\": \"2025-10-28T11:11:28+07:00\"\n        },\n        {\n            \"id\": 2,\n            \"code\": \"BCA_VA\",\n            \"name\": \"BCA Virtual Account\",\n            \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n            \"icon\": \"https://example.com/icons/bca_va.png\",\n            \"categoryID\": 1,\n            \"bankID\": 1,\n            \"providerID\": 1,\n            \"isActive\": true,\n            \"createdAt\": \"2025-10-28T11:08:44+07:00\",\n            \"updatedAt\": \"2025-10-28T11:08:44+07:00\"\n        }\n    ]\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CF",
+      "item": [
+        {
+          "name": "Pre Checkout",
+          "item": [
+            {
+              "name": "Get Payment List",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/payment-list",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "payment-list"]
+                }
+              },
+              "response": [
+                {
+                  "name": "Get Payment List",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"name\": \"Internal Provider\",\n    \"code\": \"INTERNAL\",\n    \"isActive\": true\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/v1/payment-list",
+                      "host": ["{{url}}"],
+                      "path": ["v1", "payment-list"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Date",
+                      "value": "Tue, 28 Oct 2025 06:02:12 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1506"
+                    },
+                    {
+                      "key": "Www-Authenticate",
+                      "value": "Basic realm=\"\""
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success get all category, page 1 with 2 data\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalRecords\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Internal Provider\",\n            \"code\": \"INTERNAL\",\n            \"isActive\": true,\n            \"sequence\": 1,\n            \"createdAt\": \"2025-10-28T11:10:37+07:00\",\n            \"updatedAt\": \"2025-10-28T11:10:37+07:00\",\n            \"method\": [\n                {\n                    \"id\": 5,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 2,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:12:13.343688+07:00\",\n                    \"updated_at\": \"2025-10-28T11:12:13.343688+07:00\"\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Transfer Bank (Virtual Account)\",\n            \"code\": \"BANK_TRANSFER_VA\",\n            \"isActive\": true,\n            \"sequence\": 2,\n            \"createdAt\": \"2025-10-28T09:59:57+07:00\",\n            \"updatedAt\": \"2025-10-28T09:59:57+07:00\",\n            \"method\": [\n                {\n                    \"id\": 2,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:08:44.919041+07:00\",\n                    \"updated_at\": \"2025-10-28T11:08:44.919041+07:00\"\n                },\n                {\n                    \"id\": 3,\n                    \"code\": \"BCA_VA\",\n                    \"name\": \"BCA Virtual Account\",\n                    \"description\": \"Pembayaran melalui Virtual Account Bank Central Asia.\",\n                    \"icon\": \"https://example.com/icons/bca_va.png\",\n                    \"category_id\": 1,\n                    \"bank_id\": 1,\n                    \"provider_id\": 1,\n                    \"is_active\": true,\n                    \"created_at\": \"2025-10-28T11:11:28.814583+07:00\",\n                    \"updated_at\": \"2025-10-28T11:11:28.814583+07:00\"\n                }\n            ]\n        }\n    ]\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Checkout",
+          "item": [
+            {
+              "name": "Create Transaction",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"order_id\": \"ORDER-{{$randomInt}}-\",\n    \"amount\": 50000,\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                  "raw": "{\n    \"order_id\": \"ORDER-{{$randomInt}}\",\n    \"amount\": 50000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/payment/checkout/pay",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "payment", "checkout", "pay"]
+                },
+                "description": "Endpoint untuk membuat transaksi pembayaran baru melalui Midtrans. Endpoint ini akan mengembalikan `token` dan `redirect_url` dari Midtrans Snap."
+              },
+              "response": [
+                {
+                  "name": "Success Create Transaction",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"order_id\": \"ORDER-12345-67890\",\n    \"amount\": 50000,\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                      "raw": "{\n    \"order_id\": \"ORDER-12345-67890\",\n    \"amount\": 50000,\n    \"channel\": \"material\",\n    \"customer\": {\n        \"first_name\": \"Budi\",\n        \"last_name\": \"Pratama\",\n        \"email\": \"budi.pratama@example.com\",\n        \"phone\": \"081234567890\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": null,
+                  "cookie": [],
+                  "body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Transaction created successfully\",\n    \"data\": {\n        \"token\": \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"redirect_url\": \"https://app.sandbox.midtrans.com/snap/v2/vtweb/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"order_id\": \"ORDER-12345-67890\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Pay",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{username}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "channel",
+                    "value": "Material",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"orderId\": \"872932980393\",\n\t\"paymentMethodId\": 2,\n\t\"adminFee\" : 389,\n    \"totalBayar\": 1600000,\n    \"items\" : [\n        {\n            \"id\": \"10\",\n            \"name\": \"Pasir 1 Rit\",\n            \"amount\": 800000,\n            \"qty\": 2\n        }\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/checkout/pay/:id/:channel",
+                  "host": ["{{url}}"],
+                  "path": ["v1", "checkout", "pay", ":id", ":channel"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    },
+                    {
+                      "key": "channel",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Post Checkout",
+          "item": [
+            {
+              "name": "Notification",
+              "item": [
+                {
+                  "name": "Notification - Midtrans",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t\"masked_card\": \"481111-1114\",\n\t\"approval_code\": \"T58755\",\n\t\"bank\": \"bni\",\n\t\"eci\": \"05\",\n\t\"transaction_time\": \"2014-08-24 15:39:22\",\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"signature_key\": \"9611ae4f180773893fc832f9fd082983709b77b1c17cbf294cbe792bfa850af5345062d775b71883969e70615094b6f6bb492974095f5468f756760bffa2bd0a\",\n\t\"status_code\": \"200\",\n\t\"transaction_id\": \"1a1a66f7-27a7-4844-ba1f-d86dcc16ab27\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\",\n\t\"status_message\": \"Veritrans payment notification\",\n\t\"channel_response_code\": \"00\",\n\t\"channel_response_message\": \"Approved\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/v1/notification/midtrans",
+                      "host": ["{{url}}"],
+                      "path": ["v1", "notification", "midtrans"]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Notification - Default",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t\"gross_amount\": \"537740.00\",\n\t\"order_id\": \"094949494150\",\n\t\"payment_type\": \"credit_card\",\n\t\"transaction_status\": \"capture\",\n\t\"fraud_status\": \"accept\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}/v1/notification/default",
+                      "host": ["{{url}}"],
+                      "path": ["v1", "notification", "default"]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

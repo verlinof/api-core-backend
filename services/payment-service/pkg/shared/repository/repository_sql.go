@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	// @candi:repositoryImport
+	paymentrepo "payment-service/internal/modules/payment/repository"
 	bankrepo "payment-service/internal/modules/bank/repository"
 	categoryrepo "payment-service/internal/modules/category/repository"
 	methodrepo "payment-service/internal/modules/method/repository"
@@ -28,6 +29,7 @@ type (
 		WithTransaction(ctx context.Context, txFunc func(ctx context.Context) error) (err error)
 
 		// @candi:repositoryMethod
+		PaymentRepo() paymentrepo.PaymentRepository
 		ProviderRepo() providerrepo.ProviderRepository
 		MethodRepo() methodrepo.MethodRepository
 		CategoryRepo() categoryrepo.CategoryRepository
@@ -39,6 +41,7 @@ type (
 
 		// register all repository from modules
 		// @candi:repositoryField
+		paymentRepo paymentrepo.PaymentRepository
 		providerRepo providerrepo.ProviderRepository
 		methodRepo   methodrepo.MethodRepository
 		categoryRepo categoryrepo.CategoryRepository
@@ -84,6 +87,7 @@ func NewRepositorySQL(readDB, writeDB *gorm.DB) RepoSQL {
 		readDB: readDB, writeDB: writeDB,
 
 		// @candi:repositoryConstructor
+		paymentRepo: paymentrepo.NewPaymentRepoSQL(readDB, writeDB),
 		providerRepo: providerrepo.NewProviderRepoSQL(readDB, writeDB),
 		methodRepo:   methodrepo.NewMethodRepoSQL(readDB, writeDB),
 		categoryRepo: categoryrepo.NewCategoryRepoSQL(readDB, writeDB),
@@ -137,6 +141,10 @@ func (r *repoSQLImpl) WithTransaction(ctx context.Context, txFunc func(ctx conte
 }
 
 // @candi:repositoryImplementation
+func (r *repoSQLImpl) PaymentRepo() paymentrepo.PaymentRepository {
+	return r.paymentRepo
+}
+
 func (r *repoSQLImpl) ProviderRepo() providerrepo.ProviderRepository {
 	return r.providerRepo
 }
