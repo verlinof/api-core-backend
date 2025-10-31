@@ -22,14 +22,14 @@ func (uc *paymentUsecaseImpl) HandleMidtransNotification(ctx context.Context, no
 	res, midtransErr := uc.service.Midtrans().CoreCheckTransaction(notif.OrderID)
 	if midtransErr != nil {
 		log.Printf("[Webhook] Error checking transaction status: %v\n", midtransErr)
-		return midtransErr
+		return nil
 	}
 
 	// Cari order di database
 	order, err := uc.repoSQL.PaymentRepo().FindByOrderID(ctx, res.OrderID)
 	if err != nil {
 		log.Printf("[Webhook] Error finding order %s: %v\n", res.OrderID, err)
-		return fmt.Errorf("failed to find order: %w", err)
+		return nil
 	}
 
 	var orderStatus string
