@@ -6,7 +6,10 @@ package shared
 type Environment struct {
 	// more additional environment with struct tag is environment key example:
 	// ExampleHost string `env:"EXAMPLE_HOST"`
-	
+	MidtransEnv        string `env:"MIDTRANS_ENV"`
+	MidtransMerchantID string `env:"MIDTRANS_MERCHANT_ID"`
+	MidtransServerKey  string `env:"MIDTRANS_SERVER_KEY"`
+	MidtransClientKey  string `env:"MIDTRANS_CLIENT_KEY"`
 }
 
 var sharedEnv Environment

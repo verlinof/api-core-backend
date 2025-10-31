@@ -12,7 +12,6 @@ import (
 	"github.com/golangid/candi/config"
 
 	service "payment-service/internal"
-	pkg_midtrans "payment-service/pkg/helper/midtrans"
 )
 
 func main() {
@@ -25,7 +24,6 @@ func main() {
 		}
 	}()
 
-	pkg_midtrans.Init()
 	cfg := config.Init(serviceName)
 	defer cfg.Exit()
 
