@@ -24,7 +24,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	order := shareddomain.PaymentOrder{
 		OrderID:   req.OrderID,
 		Amount:    float64(req.Amount),
-		Status:    "PENDING",
+		Status:    "pending",
 		Channel:   req.Channel,
 		MethodID:  req.MethodID,
 		OrderData: string(orderDataJSON),
