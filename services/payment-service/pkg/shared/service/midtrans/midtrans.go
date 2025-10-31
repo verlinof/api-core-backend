@@ -2,6 +2,7 @@ package mid_trans
 
 import (
 	"github.com/midtrans/midtrans-go"
+	"github.com/midtrans/midtrans-go/coreapi"
 	"github.com/midtrans/midtrans-go/snap"
 )
 
@@ -11,9 +12,10 @@ type midtransImpl struct {
 }
 
 type Midtrans interface {
-	SnapCreateTransaction(req *snap.Request) (*snap.Response, error)
-	SnapCreateTransactionToken(req *snap.Request) (string, error)
-	SnapCreateTransactionUrl(req *snap.Request) (string, error)
+	SnapCreateTransaction(req *snap.Request) (*snap.Response, *midtrans.Error)
+	SnapCreateTransactionToken(req *snap.Request) (string, *midtrans.Error)
+	SnapCreateTransactionUrl(req *snap.Request) (string, *midtrans.Error)
+	CoreCheckTransaction(orderID string) (*coreapi.TransactionStatusResponse, *midtrans.Error)
 }
 
 func NewMidtransService(env string, serverKey string) Midtrans {
@@ -23,7 +25,7 @@ func NewMidtransService(env string, serverKey string) Midtrans {
 	}
 }
 
-func (m *midtransImpl) SnapCreateTransaction(req *snap.Request) (*snap.Response, error) {
+func (m *midtransImpl) SnapCreateTransaction(req *snap.Request) (*snap.Response, *midtrans.Error) {
 	snapClient := snap.Client{}
 	if m.Env == "production" {
 		snapClient.New(m.ServerKey, midtrans.Production)
@@ -33,7 +35,7 @@ func (m *midtransImpl) SnapCreateTransaction(req *snap.Request) (*snap.Response,
 	return snapClient.CreateTransaction(req)
 }
 
-func (m *midtransImpl) SnapCreateTransactionToken(req *snap.Request) (string, error) {
+func (m *midtransImpl) SnapCreateTransactionToken(req *snap.Request) (string, *midtrans.Error) {
 	snapClient := snap.Client{}
 	if m.Env == "production" {
 		snapClient.New(m.ServerKey, midtrans.Production)
@@ -43,7 +45,7 @@ func (m *midtransImpl) SnapCreateTransactionToken(req *snap.Request) (string, er
 	return snapClient.CreateTransactionToken(req)
 }
 
-func (m *midtransImpl) SnapCreateTransactionUrl(req *snap.Request) (string, error) {
+func (m *midtransImpl) SnapCreateTransactionUrl(req *snap.Request) (string, *midtrans.Error) {
 	snapClient := snap.Client{}
 	if m.Env == "production" {
 		snapClient.New(m.ServerKey, midtrans.Production)
@@ -51,4 +53,14 @@ func (m *midtransImpl) SnapCreateTransactionUrl(req *snap.Request) (string, erro
 		snapClient.New(m.ServerKey, midtrans.Sandbox)
 	}
 	return snapClient.CreateTransactionUrl(req)
+}
+
+func (m *midtransImpl) CoreCheckTransaction(orderID string) (*coreapi.TransactionStatusResponse, *midtrans.Error) {
+	coreClient := coreapi.Client{}
+	if m.Env == "production" {
+		coreClient.New(m.ServerKey, midtrans.Production)
+	} else {
+		coreClient.New(m.ServerKey, midtrans.Sandbox)
+	}
+	return coreClient.CheckTransaction(orderID)
 }
