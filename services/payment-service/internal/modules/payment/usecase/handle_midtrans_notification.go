@@ -3,7 +3,6 @@ package usecase
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"payment-service/internal/modules/payment/domain"
 	shareddomain "payment-service/pkg/shared/domain"
@@ -48,7 +47,7 @@ func (uc *paymentUsecaseImpl) HandleMidtransNotification(ctx context.Context, no
 	case domain.TransactionStatusFailure:
 		orderStatus = "failed"
 	default:
-		return fmt.Errorf("unknown transaction status: %s", res.TransactionStatus)
+		return nil
 	}
 
 	// Update status order di database
@@ -57,7 +56,7 @@ func (uc *paymentUsecaseImpl) HandleMidtransNotification(ctx context.Context, no
 	order.FraudStatus = res.FraudStatus
 	if err := uc.repoSQL.PaymentRepo().Save(ctx, order); err != nil {
 		log.Printf("[Webhook] Error updating order status for OrderID %s: %v\n", order.OrderID, err)
-		return fmt.Errorf("failed to update order status: %w", err)
+		return nil
 	}
 
 	// Simpan log notifikasi
