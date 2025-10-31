@@ -70,11 +70,10 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 
 	// 3. Panggil API Midtrans
 	snapResp, midtransErr := uc.service.Midtrans().SnapCreateTransaction(snapReq)
-
 	if midtransErr != nil {
 		// Log for Error
 		go uc.createPaymentLog(context.Background(), &order, snapReq, midtransErr, snapResp)
-		return nil, fmt.Errorf("midtrans error: %s", midtransErr)
+		return nil, fmt.Errorf("midtrans error: %s", midtransErr.Error())
 	}
 
 	// Save DB order

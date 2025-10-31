@@ -14,12 +14,8 @@ import (
 
 // PaymentUsecase abstraction
 type PaymentUsecase interface {
-	// GetAllPayment(ctx context.Context, filter *domain.FilterPayment) (data domain.ResponsePaymentList, err error)
-	// GetDetailPayment(ctx context.Context, id int) (data domain.ResponsePayment, err error)
-	// CreatePayment(ctx context.Context, data *domain.RequestPayment) (res domain.ResponsePayment, err error)
-	// UpdatePayment(ctx context.Context, data *domain.RequestPayment) (err error)
-	// DeletePayment(ctx context.Context, id int) (err error)
 	CreateTransaction(ctx context.Context, req *domain.CreateOrderRequest) (*domain.CreateTransactionResponse, error)
+	HandleMidtransNotification(ctx context.Context, notif domain.MidtransNotification) error
 }
 
 type paymentUsecaseImpl struct {
