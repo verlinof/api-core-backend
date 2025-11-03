@@ -42,3 +42,7 @@ const (
 	FraudStatusChallenge = "challenge"
 	FraudStatusDeny      = "deny"
 )
+
+type LogistikAPIPayload struct {
+	OrderID string `json:"order_id"`
+}
