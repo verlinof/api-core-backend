@@ -62,7 +62,7 @@ func (uc *paymentUsecaseImpl) HandleMidtransNotification(ctx context.Context, no
 	logistikPayload := domain.LogistikAPIPayload{
 		OrderID: order.OrderID,
 	}
-	fullURL := "https://api.borneolink.id/v1/notification"
+	fullURL := "https://api.borneolink.id/v1/payment/notification"
 	err = uc.service.Notifier().Post(fullURL, logistikPayload, nil)
 	if err != nil {
 		log.Printf("[API-notifier] Error updating order status on Logistik API %s: %v\n", logistikPayload.OrderID, err)
