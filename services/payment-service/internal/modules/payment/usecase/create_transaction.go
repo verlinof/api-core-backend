@@ -58,6 +58,9 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 			Unit:      "hour",
 			Duration:  1,
 		},
+		Callbacks: &snap.Callbacks{
+			Finish: fmt.Sprintf("https://borneolink.id/pembeli/pesanan/detail/%v", req.ID),
+		},
 	}
 
 	if req.MethodID != nil {
