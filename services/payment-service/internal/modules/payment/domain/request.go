@@ -39,6 +39,7 @@ type ItemDetail struct {
 }
 
 type CreateOrderRequest struct {
+	ID       int            `json:"id"`
 	OrderID  string         `json:"order_id"`
 	Amount   int64          `json:"amount"`
 	Channel  string         `json:"channel"`
