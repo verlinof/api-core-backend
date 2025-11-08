@@ -13,6 +13,7 @@ type PaymentMethod struct {
 	CategoryID  int              `gorm:"column:category_id" json:"category_id"`
 	BankID      int              `gorm:"column:bank_id" json:"bank_id"`
 	ProviderID  int              `gorm:"column:provider_id" json:"provider_id"`
+	AdminFee    float64          `gorm:"column:admin_fee;type:decimal(10,2)" json:"admin_fee"`
 	IsActive    bool             `gorm:"column:is_active" json:"is_active"`
 	CreatedAt   time.Time        `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt   time.Time        `gorm:"column:updated_at" json:"updated_at"`
