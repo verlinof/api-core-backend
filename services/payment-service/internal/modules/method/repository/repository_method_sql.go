@@ -91,6 +91,15 @@ func (r *methodRepoSQL) Find(ctx context.Context, filter *domain.FilterMethod) (
 	return
 }
 
+func (r *methodRepoSQL) FindByID(ctx context.Context, id int) (result shareddomain.PaymentMethod, err error) {
+	trace, ctx := tracer.StartTraceWithContext(ctx, "MethodRepoSQL:FindByID")
+	defer func() { trace.Finish(tracer.FinishWithError(err)) }()
+
+	filter := &domain.FilterMethod{ID: &id}
+	err = r.setFilterMethod(shared.SetSpanToGorm(ctx, r.readDB), filter).First(&result).Error
+	return
+}
+
 func (r *methodRepoSQL) Save(ctx context.Context, data *shareddomain.PaymentMethod, updateOptions ...candishared.DBUpdateOptionFunc) (err error) {
 	trace, ctx := tracer.StartTraceWithContext(ctx, "MethodRepoSQL:Save")
 	defer func() { trace.Finish(tracer.FinishWithError(err)) }()

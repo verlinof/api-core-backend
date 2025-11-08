@@ -16,6 +16,7 @@ type MethodRepository interface {
 	FetchAll(ctx context.Context, filter *domain.FilterMethod) ([]shareddomain.PaymentMethod, error)
 	Count(ctx context.Context, filter *domain.FilterMethod) int
 	Find(ctx context.Context, filter *domain.FilterMethod) (shareddomain.PaymentMethod, error)
+	FindByID(ctx context.Context, id int) (shareddomain.PaymentMethod, error)
 	Save(ctx context.Context, data *shareddomain.PaymentMethod, updateOptions ...candishared.DBUpdateOptionFunc) error
 	Delete(ctx context.Context, filter *domain.FilterMethod) (err error)
 }
