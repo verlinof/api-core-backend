@@ -19,6 +19,11 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	trace, ctx := tracer.StartTraceWithContext(ctx, "PaymentUsecase:CreateTransaction")
 	defer trace.Finish()
 
+	method, err := uc.repoSQL.MethodRepo().FindByID(ctx, *req.MethodID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to find payment method: %w", err)
+	}
+
 	// 1. Siapkan data Order
 	orderDataJSON, _ := json.Marshal(req.Items)
 	order := shareddomain.PaymentOrder{
@@ -44,7 +49,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	snapReq := &snap.Request{
 		TransactionDetails: midtrans.TransactionDetails{
 			OrderID:  order.OrderID,
-			GrossAmt: int64(order.Amount),
+			GrossAmt: int64(order.Amount + method.AdminFee),
 		},
 		CustomerDetail: &midtrans.CustomerDetails{
 			FName: req.Customer.FirstName,

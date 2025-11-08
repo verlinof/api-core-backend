@@ -20,6 +20,7 @@ type ResponseMethod struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Icon        string `json:"icon"`
+	AdminFee    string `json:"adminFee"`
 	CategoryID  int    `json:"categoryID"`
 	BankID      int    `json:"bankID"`
 	ProviderID  int    `json:"providerID"`
