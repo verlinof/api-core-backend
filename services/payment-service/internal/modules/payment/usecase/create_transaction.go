@@ -55,7 +55,7 @@ func (uc *paymentUsecaseImpl) CreateTransaction(ctx context.Context, req *domain
 	snapReq := &snap.Request{
 		TransactionDetails: midtrans.TransactionDetails{
 			OrderID:  order.OrderID,
-			GrossAmt: int64(order.Amount),
+			GrossAmt: int64(order.Amount + method.AdminFee),
 		},
 		CustomerDetail: &midtrans.CustomerDetails{
 			FName: req.Customer.FirstName,
