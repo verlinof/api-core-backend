@@ -36,6 +36,7 @@ jobs:
     - name: Build Docker Images and Save as TAR
       run: |
         mkdir -p images
+        echo "isi dari ${{ steps.load_env.outputs.ENV_CONTENT }}"
         echo "${{ steps.load_env.outputs.ENV_CONTENT }}" > ./services/user-service/.env
 
         IMAGE_NAME=user-service:latest
