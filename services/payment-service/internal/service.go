@@ -3,6 +3,7 @@
 package paymentservice
 
 import (
+	"payment-service/internal/modules/checkout"
 	"payment-service/internal/modules/payment"
 	"payment-service/internal/modules/bank"
 	"payment-service/internal/modules/category"
@@ -31,6 +32,7 @@ func NewService(cfg *config.Config) factory.ServiceFactory {
 	deps := configs.LoadServiceConfigs(cfg)
 
 	modules := []factory.ModuleFactory{
+		checkout.NewModule(deps),
 		payment.NewModule(deps),
 		provider.NewModule(deps),
 		method.NewModule(deps),

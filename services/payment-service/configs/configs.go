@@ -5,6 +5,10 @@ package configs
 import (
 	"context"
 
+	"monorepo/sdk"
+	midtranssdk "monorepo/sdk/midtrans"
+	userservicesdk "monorepo/sdk/user-service"
+
 	"payment-service/api"
 	"payment-service/pkg/shared"
 	"payment-service/pkg/shared/repository"
@@ -52,6 +56,16 @@ func LoadServiceConfigs(baseCfg *config.Config) (deps dependency.Dependency) {
 		validatorDeps := validator.NewValidator()
 		validatorDeps.JSONSchema.SchemaStorage = validator.NewFileSystemStorage(api.JSONSchema, "jsonschema")
 
+		midtransHost := "https://api.sandbox.midtrans.com/v2"
+		if sharedEnv.MidtransEnv == "production" {
+			midtransHost = "https://api.midtrans.com/v2"
+		}
+
+		sdk.SetGlobalSDK(
+			sdk.SetMidtrans(midtranssdk.NewMidtransRestApi(midtransHost, sharedEnv.MidtransServerKey, sharedEnv.MidtransClientKey)),
+			sdk.SetUserservice(userservicesdk.NewUserserviceServiceREST(sharedEnv.UserServiceHost)),
+		)
+
 		// inject all service dependencies
 		// See all option in dependency package
 		deps = dependency.InitDependency(
@@ -77,8 +91,8 @@ func LoadServiceConfigs(baseCfg *config.Config) (deps dependency.Dependency) {
 	usecase.SetSharedUsecase(deps)
 
 	deps.SetMiddleware(middleware.NewMiddlewareWithOption(
-		middleware.SetTokenValidator(&shared.DefaultMiddleware{}),
-		middleware.SetACLPermissionChecker(&shared.DefaultMiddleware{}),
+		middleware.SetTokenValidator(shared.NewDefaultMiddleware()),
+		// middleware.SetACLPermissionChecker(shared.NewDefaultMiddleware()),
 		middleware.SetUserIDExtractor(func(tokenClaim *candishared.TokenClaim) (userID string) {
 			return tokenClaim.Subject
 		}),

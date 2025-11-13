@@ -3,11 +3,49 @@
 package sdk
 
 import (
+	"monorepo/sdk/midtrans"
+	userservice "monorepo/sdk/user-service"
 	"sync"
 )
 
 // Option func type
 type Option func(*sdkInstance)
+
+func SetMidtrans(mid midtrans.Midtrans) Option {
+	return func(s *sdkInstance) {
+		s.midtrans = mid
+	}
+}
+
+func SetUserservice(us userservice.Userservice) Option {
+	return func(s *sdkInstance) {
+		s.userservice = us
+	}
+}
+
+// SDK instance abstraction
+type SDK interface {
+	// @candi:serviceMethod
+	// Userservice() userservice.Userservice
+	Midtrans() midtrans.Midtrans
+	Userservice() userservice.Userservice
+}
+
+// sdkInstance implementation
+type sdkInstance struct {
+	// @candi:serviceField
+	// userservice	userservice.Userservice
+	midtrans    midtrans.Midtrans
+	userservice userservice.Userservice
+}
+
+func (s *sdkInstance) Midtrans() midtrans.Midtrans {
+	return s.midtrans
+}
+
+func (s *sdkInstance) Userservice() userservice.Userservice {
+	return s.userservice
+}
 
 var (
 	sdk  SDK
@@ -28,16 +66,4 @@ func SetGlobalSDK(opts ...Option) {
 // GetSDK get global sdk instance
 func GetSDK() SDK {
 	return sdk
-}
-
-// @candi:construct
-
-// SDK instance abstraction
-type SDK interface {
-	// @candi:serviceMethod
-}
-
-// sdkInstance implementation
-type sdkInstance struct {
-	// @candi:serviceField
 }

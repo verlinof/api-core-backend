@@ -1,5 +1,5 @@
 {
-     "GoVersion": "1.25",
+     "GoVersion": "1.24",
      "Version": "v1.18.8",
      "ServiceName": "payment-service",
      "PackagePrefix": "payment-service",
@@ -7,7 +7,7 @@
      "Owner": "Achmad Afiffudin Nurzein",
      "License": "MIT License",
      "Year": 2025,
-     "IsMonorepo": true,
+     "IsMonorepo": false,
      "RestHandler": true,
      "GRPCHandler": false,
      "GraphQLHandler": false,
@@ -32,6 +32,9 @@
           },
           {
                "ModuleName": "category"
+          },
+          {
+               "ModuleName": "checkout"
           },
           {
                "ModuleName": "log"

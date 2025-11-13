@@ -10,6 +10,7 @@ type Environment struct {
 	MidtransMerchantID string `env:"MIDTRANS_MERCHANT_ID"`
 	MidtransServerKey  string `env:"MIDTRANS_SERVER_KEY"`
 	MidtransClientKey  string `env:"MIDTRANS_CLIENT_KEY"`
+	UserServiceHost    string `env:"USER_SERVICE_HOST"`
 }
 
 var sharedEnv Environment

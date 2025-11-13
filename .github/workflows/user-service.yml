@@ -1,0 +1,52 @@
+name: CI Docker
+
+on:
+  push:
+    tags:
+      - user-service
+
+env:
+  SERVICES: "user-service"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        PORT=${{ secrets.SSH_PORT }}
+        HOST=${{ secrets.SSH_HOST }}
+        ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
+        cat /root/user-service/.env
+
+    - name: Build Docker Images and Save as TAR
+      run: |
+        mkdir -p images
+        echo "${{ steps.getenv.outputs.stdout }}" > ./services/user-service/.env
+
+        IMAGE_NAME=user-service:latest
+        echo "🛠️ Building $IMAGE_NAME"
+        docker build -t $IMAGE_NAME ./services/user-service
+        docker save -o ./images/user-service.tar $IMAGE_NAME
+
+    - name: Copy Images to VPS
+      run: |
+        scp -P ${{ secrets.SSH_PORT }} ./images/user-service.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/
+
+    - name: Deploy Images on VPS
+      run: |
+        ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+        echo "📦 Loading image for user-service..."
+        docker load -i /tmp/\$SERVICE.tar
+        docker stop \$SERVICE || true
+        docker rm \$SERVICE || true
+        docker run -d --name \$SERVICE --restart=unless-stopped --expose ${{ vars.HTTP_PORT }} --network logistik_nginx_proxy_manager_default \$SERVICE:latest  # Ganti port sesuai kebutuhan
+        EOF

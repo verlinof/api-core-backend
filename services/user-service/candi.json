@@ -1,0 +1,43 @@
+{
+     "GoVersion": "1.24",
+     "Version": "v1.18.8",
+     "ServiceName": "user-service",
+     "PackagePrefix": "monorepo/services/user-service",
+     "ProtoSource": "monorepo/sdk/user-service/proto",
+     "Owner": "Achmad Afiffudin Nurzein",
+     "License": "Private License",
+     "Year": 2025,
+     "IsMonorepo": true,
+     "RestHandler": true,
+     "GRPCHandler": false,
+     "GraphQLHandler": false,
+     "FiberRestHandler": true,
+     "KafkaHandler": false,
+     "SchedulerHandler": false,
+     "RedisSubsHandler": false,
+     "TaskQueueHandler": false,
+     "PostgresListenerHandler": false,
+     "RabbitMQHandler": false,
+     "IsWorkerActive": false,
+     "RedisDeps": false,
+     "SQLDeps": true,
+     "MongoDeps": false,
+     "SQLUseGORM": true,
+     "ArangoDeps": false,
+     "SQLDriver": "postgres",
+     "WorkerPlugins": null,
+     "Modules": [
+          {
+               "ModuleName": "auth"
+          },
+          {
+               "ModuleName": "driver"
+          },
+          {
+               "ModuleName": "mitra"
+          },
+          {
+               "ModuleName": "user"
+          }
+     ]
+}
