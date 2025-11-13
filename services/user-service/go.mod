@@ -1,6 +1,12 @@
-module user-service
+module monorepo/services/user-service
 
-go 1.24
+go 1.25.1
+
+// Local monorepo module mapping for local development. This makes imports like
+// "monorepo/sdk" resolve to the repository root when working inside this
+// sub-module. Keep in sync with the monorepo's module path in the root
+// go.mod (module monorepo).
+require monorepo v0.0.0
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.0
@@ -96,3 +102,5 @@ require (
 	google.golang.org/grpc v1.73.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 )
+
+replace monorepo => ../..

@@ -4,8 +4,9 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/lib/pq"
 	"runtime/debug"
+
+	_ "github.com/lib/pq"
 
 	"github.com/golangid/candi/codebase/app"
 	"github.com/golangid/candi/config"
