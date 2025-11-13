@@ -24,6 +24,7 @@ jobs:
           ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
   
       - name: Load Env
+        id: load_env
         run: |
           ENV_CONTENT=$(ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cat /root/user-service/.env')
           echo "ENV_CONTENT<<EOF" >> $GITHUB_OUTPUT
