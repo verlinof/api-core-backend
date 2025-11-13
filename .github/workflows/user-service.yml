@@ -27,10 +27,17 @@ jobs:
         ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
         cat /root/user-service/.env
 
+    - name: Load Env
+      run: |
+        ENV_CONTENT=$(ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cat /root/user-service/.env')
+        echo "ENV_CONTENT<<EOF" >> $GITHUB_OUTPUT
+        echo "$ENV_CONTENT" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
     - name: Build Docker Images and Save as TAR
       run: |
         mkdir -p images
-        echo "${{ steps.getenv.outputs.stdout }}" > ./services/user-service/.env
+        echo "${{ steps.load_env.outputs.ENV_CONTENT }}" > ./services/user-service/.env
 
         IMAGE_NAME=user-service:latest
         echo "🛠️ Building $IMAGE_NAME"
