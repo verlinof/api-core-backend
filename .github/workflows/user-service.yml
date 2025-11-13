@@ -25,7 +25,6 @@ jobs:
         PORT=${{ secrets.SSH_PORT }}
         HOST=${{ secrets.SSH_HOST }}
         ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts
-        cat ~/user-service/.env
 
     - name: Load Env
       run: |
