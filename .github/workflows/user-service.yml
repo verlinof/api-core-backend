@@ -26,6 +26,7 @@ jobs:
       - name: Load Env
         run: |
           ENV_CONTENT=$(ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cat /root/user-service/.env')
+          echo "ENV_CONTENT=$ENV_CONTENT"
           echo "ENV_CONTENT<<EOF" >> $GITHUB_OUTPUT
           echo "$ENV_CONTENT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
