@@ -26,7 +26,6 @@ jobs:
       - name: Load Env
         run: |
           ENV_CONTENT=$(ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cat /root/user-service/.env')
-          echo "ENV_CONTENT=$ENV_CONTENT"
           echo "ENV_CONTENT<<EOF" >> $GITHUB_OUTPUT
           echo "$ENV_CONTENT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -37,6 +36,8 @@ jobs:
           echo "${{ steps.load_env.outputs.ENV_CONTENT }}" > ./services/user-service/.env
           echo "✅ .env file created locally:"
           cat ./services/user-service/.env
+          TESS="$(cat ./services/user-service/.env)"
+          echo "TESS=$TESS"
           IMAGE_NAME=user-service:latest
           echo "🛠️ Building $IMAGE_NAME"
           docker build -t $IMAGE_NAME ./services/user-service
